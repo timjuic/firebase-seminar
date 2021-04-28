@@ -1,0 +1,143 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- CSS biblioteka Materialize -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <title>Firebase seminar</title>
+</head>
+<body class="grey lighten-3">
+
+  <!-- Navigacijska traka -->
+  <nav class="z-depth-0 black lighten-4">
+    <div class="nav-wrapper container">
+      <a href="#" class="brand-logo">
+        <img src="logo.svg" style="width: 180px; margin-top: 20px;">
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="logged-in" style="display:none">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-account">Moj profil</a>
+          </li>
+          <li class="logged-in" style="display:none">
+            <a href="#" class="grey-text" id="logout">Odjava</a>
+          </li>
+          <li class="logged-in" style="display:none">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-create">Kreiraj sadržaj</a>
+          </li>
+          <li class="logged-out" style="display:none">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-login">Prijava</a>
+          </li>
+          <li class="logged-out" style="display:none">
+            <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Novi profil</a>
+          </li>
+        </span>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Popup prozor za kreiranje profila -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Novi Profil</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email adresa</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Lozinka</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Napravi profil</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup prozor za prijavu -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Prijava</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email adresa</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Vaša lozinka</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Prijava</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup prozor s detaljima korisničkog profila -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Podaci računa</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
+
+  <!-- Popup prozor u kojem će korisnici kreirati nekakav sadržaj -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Create Article</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="title" required>
+          <label for="title">Content Title</label>
+        </div>
+        <div class="input-field">
+          <textarea id="content" class="materialize-textarea" required></textarea>
+          <label for="content">Content Text</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Napravi članak</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Sadržaj web stranice koji će korisnici moći mijenjati nakon što su se prijavili -->
+  <div class="container articles" style="margin-top: 40px;">
+    
+  </div>
+  
+  <!-- Dohvaćanje Firebase funkcionalnosti -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+      https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    var firebaseConfig = {
+      apiKey: "AIzaSyBAmrnlR5muB4tkXm7fHA0LbLMw3WmuL7Q",
+      authDomain: "testproject-b0396.firebaseapp.com",
+      projectId: "testproject-b0396",
+      storageBucket: "testproject-b0396.appspot.com",
+      messagingSenderId: "28017981256",
+      appId: "1:28017981256:web:c7986be2b96dd0505fe57d",
+      measurementId: "G-ZWZQGR0E0G"
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // db.settings({timestampsInSnapshots: true})
+  </script>
+
+  <!-- Javascript Biblioteka Materialize -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!-- Javascript fileovi koje ćemo uskoro koristiti -->
+  <script src="auth.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>
